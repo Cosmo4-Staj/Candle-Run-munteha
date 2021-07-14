@@ -83,10 +83,15 @@ public class PlayerManager : MonoBehaviour
         if (other.transform.tag.Equals("Obstacle"))
         {
             var cut = Instantiate(cutPiece);
-            cut.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 10f);
+            cut.transform.position = new Vector3(this.transform.position.x, 3f, this.transform.position.z + 10f);
             this.transform.localScale -= Vector3.up * ropeCutValue ;
         }
-        
+        if (other.transform.tag.Equals("Finish"))
+        {
+            scaleSpeed = 0;
+            moveSpeed = 0;
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -98,6 +103,7 @@ public class PlayerManager : MonoBehaviour
                 transform.localScale -= Vector3.up * bridgeCutValue * Time.deltaTime;
             }
         }
+        
     }
 }
 
