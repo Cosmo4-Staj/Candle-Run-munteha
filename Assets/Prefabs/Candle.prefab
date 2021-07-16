@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8940867193199022803}
   - component: {fileID: 8940867193199022802}
   - component: {fileID: 3769894782354612207}
+  - component: {fileID: 4605208699215688935}
   m_Layer: 0
   m_Name: Candle
   m_TagString: Candle
@@ -109,3 +110,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 1
+  pickupEffect: {fileID: 4739112662229507081, guid: 48de6e773a0df0b4fac0f8d67813b1fa, type: 3}
+--- !u!114 &4605208699215688935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940867193199022800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a578f6b2038b14fa43629e8784487f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100

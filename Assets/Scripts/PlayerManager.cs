@@ -88,7 +88,8 @@ public class PlayerManager : MonoBehaviour
         {
             var cut = Instantiate(cutPiece);
             cut.transform.position = new Vector3(this.transform.position.x, 3f, this.transform.position.z + 10f);
-            this.transform.localScale -= Vector3.up * ropeCutValue;
+            //this.transform.localScale -= Vector3.up * ropeCutValue;
+            this.transform.localScale -= new Vector3(0, Mathf.Clamp(ropeCutValue,0,transform.localScale.y),0);
         }
         if (other.transform.tag.Equals("Finish"))
         {
@@ -96,6 +97,16 @@ public class PlayerManager : MonoBehaviour
             moveSpeed = 0;
             gameObject.SetActive(false);
             GameManager.instance.OnLevelCompleted();
+        }
+        if (other.transform.tag.Equals("FinishFlag"))
+        {
+            Destroy(other.gameObject);
+            //destroy red flag 
+        }
+        if (other.transform.tag.Equals("Failed"))
+        {
+            GameManager.instance.OnLevelFailed();
+            gameObject.SetActive(false);
         }
     }
 /*

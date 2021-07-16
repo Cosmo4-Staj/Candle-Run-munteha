@@ -7,6 +7,9 @@ TagManager:
   - Candle
   - Obstacle
   - Bridge
+  - Failed
+  - FinishFlag
+  - Finish Flag
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static bool isGameStarted = false;
     public static bool isGameEnded = false;
+    public static bool isGameAlreadyOpen = false;
     public GameObject StartScreen, FinishScreen, FailedScreen;
     
     //SCORE
@@ -19,7 +20,9 @@ public class GameManager : MonoBehaviour
     public static int levelCount;
     //public TextMeshProUGUI levelText; 
     public List<GameObject> Levels = new List<GameObject>();
-    
+    public GameObject levelText;
+    public GameObject StartPanel;
+
     void Awake()
     {
         if(instance == null)
@@ -31,7 +34,18 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        LoadLevel();
+        isGameStarted = false;
+        isGameEnded = false;
+        if (isGameAlreadyOpen == true)
+        {
+            StartPanel.SetActive(false);
+            OnLevelStarted();
+        }
+            LoadLevel();
+    }
+    void Update()
+    {
+        levelText.GetComponent<TextMeshProUGUI>().SetText("Level: " + (levelCount + 1).ToString());
     }
     public void NextLevel()
     {
@@ -43,7 +57,7 @@ public class GameManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(1);
-
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void LoadLevel()
@@ -61,6 +75,7 @@ public class GameManager : MonoBehaviour
 
     public void OnLevelStarted()
     {
+        isGameAlreadyOpen = true;
         isGameStarted = true;
         StartScreen.SetActive(false);
     }
@@ -72,6 +87,7 @@ public class GameManager : MonoBehaviour
 
     public void OnLevelFailed()
     {
+        isGameEnded = true;
         FailedScreen.SetActive(true);
     }
 
@@ -94,3 +110,4 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + currentFlame;
     }
 }
+
