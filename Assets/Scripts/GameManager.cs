@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public static bool isGameEnded = false;
     public static bool isGameAlreadyOpen = false;
     public GameObject StartScreen, FinishScreen, FailedScreen;
-    
+    public GameObject StartPanel;
+
     //SCORE
     public int currentFlame;
     [SerializeField] TextMeshProUGUI scoreText;
@@ -21,7 +22,6 @@ public class GameManager : MonoBehaviour
     //public TextMeshProUGUI levelText; 
     public List<GameObject> Levels = new List<GameObject>();
     public GameObject levelText;
-    public GameObject StartPanel;
 
     void Awake()
     {

@@ -13,8 +13,11 @@ public class PlayerManager : MonoBehaviour
 
     Vector3 curOffset, mouseOffset;
     GameObject playerOffsetX;
+
     public Vector2 rangePlayerPosX;
     public GameObject cutPiece;
+    public GameObject finishParticles;
+    public AudioClip finishSound;
 
     void Start()
     {
@@ -96,6 +99,8 @@ public class PlayerManager : MonoBehaviour
             scaleSpeed = 0;
             moveSpeed = 0;
             gameObject.SetActive(false);
+            AudioSource.PlayClipAtPoint(finishSound, transform.position, 1);
+            GameObject ob = Instantiate(finishParticles);
             GameManager.instance.OnLevelCompleted();
         }
         if (other.transform.tag.Equals("FinishFlag"))
@@ -109,18 +114,6 @@ public class PlayerManager : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-/*
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.transform.tag.Equals("Bridge"))
-        {
-            if(IsMelted() == false)
-            {
-                transform.localScale -= Vector3.up * bridgeCutValue * Time.deltaTime;
-            }
-        }
-        
-    }*/
 
     private void OnCollisionStay(Collision collision)
     {
